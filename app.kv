@@ -1,0 +1,583 @@
+#Telas:
+JanelaGerenciadora:
+    Inicio:
+        name: 'inicio'
+    Entrar:
+        name: 'entrar'
+    Criar:
+        name: 'criar'
+    Esqueceu_senha:
+        name: 'esenha'
+    Navegar:
+        name: 'navegar'
+    Anunciar:
+        name: 'anunciar'
+    Anunciando:
+        name: 'anunciando'
+    Anuncio:
+        name: 'anuncio'
+
+<Inicio>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: dp(30)
+        size_hint: 1,.8
+        pos_hint: {'center_x': .5, 'center_y': .6}
+        Image:
+            source: 'Imagens/Home.png'
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: dp(8)
+            size_hint: 1, None
+            pos_hint: {'center_x': .5, 'center_y': .2}
+
+            MDFillRoundFlatButton:
+                text: 'Entrar'
+                md_bg_color: 0.33, 0.70, 0.33
+                size_hint_x: .7
+                pos_hint: {'center_x': .5}
+                on_release:
+                    app.root.current = 'entrar'
+                    root.manager.transition.direction = 'left'
+
+            MDFillRoundFlatButton:
+                text: 'Criar conta'
+                md_bg_color: 0.33, 0.70, 0.33
+                size_hint_x: .7
+                pos_hint: {'center_x': .5}
+                on_release:
+                    app.root.current = 'criar'
+                    root.manager.transition.direction = 'left'
+
+            MDTextButton:
+                text: 'Continuar sem conta'
+                theme_text_color: 'Custom'
+                text_color: 0.54, 0.54, 0.54
+                pos_hint: {'center_x': .5}
+                on_release:
+                    app.root.current = 'navegar'
+                    root.manager.transition.direction = 'left'
+<Entrar>:
+    MDFloatLayout:
+
+        MDIconButton:
+            icon: 'arrow-left'
+            user_font_size: '35sp'
+            pos_hint: {'center_y': .95}
+            theme_text_color: 'Custom'
+            text_color: 0.33, 0.70, 0.33
+            on_release:
+                app.root.current = 'inicio'
+                root.manager.transition.direction = 'right'
+
+        MDTextField:
+            hint_text: 'E-mail'
+            pos_hint: {'center_x': 0.5, 'center_y': .8}
+            size_hint_x: .8
+
+        MDTextField:
+            id: text_field
+            hint_text: 'Senha'
+            pos_hint: {'center_x': 0.5, 'center_y': .68}
+            size_hint_x: .8
+            password: True
+
+        MDIconButton:
+            icon: 'eye-off'
+            theme_text_color: 'Hint'
+            pos_hint: {'center_x': 0.87, 'center_y': .68}
+            on_release:
+                self.icon = 'eye' if self.icon == 'eye-off' else 'eye-off'
+                text_field.password = False if text_field.password is True else True
+
+        MDFillRoundFlatIconButton:
+            text: 'Cadastre-se'
+            text_color: 0.61, 0.61, 0.61
+            line_color: 0.33, 0.70, 0.33
+            line_width: 1.3
+            pos_hint: {'center_x': 0.71, 'center_y': 0.5}
+            size_hint_x: .387
+            md_bg_color: 0.98, 0.98, 0.98
+
+        MDFillRoundFlatButton:
+            text: 'Entrar'
+            pos_hint: {'center_x': 0.3, 'center_y': 0.5}
+            size_hint_x: .4
+            md_bg_color: 0.33, 0.70, 0.33
+
+        MDTextButton:
+            text: 'Esqueceu a senha?'
+            theme_text_color: 'Custom'
+            text_color: 0.61, 0.61, 0.61
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release:
+                app.root.current = 'esenha'
+                root.manager.transition.direction = 'left'
+
+<Criar>:
+    MDFloatLayout:
+
+        MDIconButton:
+            icon: 'arrow-left'
+            user_font_size: '35sp'
+            pos_hint: {'center_y': .95}
+            theme_text_color: 'Custom'
+            text_color: 0.33, 0.70, 0.33
+            on_release:
+                app.root.current = 'inicio'
+                root.manager.transition.direction = 'right'
+
+        MDTextField:
+            hint_text: 'Nome'
+            pos_hint: {'center_x': 0.5, 'center_y': .8}
+            size_hint_x: .8
+
+        MDTextField:
+            hint_text: 'E-mail'
+            pos_hint: {'center_x': 0.5, 'center_y': .68}
+            size_hint_x: .8
+
+        MDTextField:
+            id: text_senha
+            hint_text: 'Senha'
+            pos_hint: {'center_x': 0.5, 'center_y': .56}
+            size_hint_x: .8
+            password: True
+
+        MDIconButton:
+            icon: 'eye-off'
+            pos_hint: {'center_x': .875, 'center_y': .56}
+            theme_text_color: 'Hint'
+            on_release:
+                self.icon = 'eye' if self.icon == 'eye-off' else 'eye-off'
+                text_senha.password = False if text_senha.password is True else True
+
+        MDTextField:
+            id: conf_senha
+            hint_text: 'Confirmar senha'
+            pos_hint: {'center_x': 0.5, 'center_y': .44}
+            size_hint_x: .8
+            password: True
+
+        MDIconButton:
+            icon: 'eye-off'
+            pos_hint: {'center_x': .875, 'center_y': .44}
+            theme_text_color: 'Hint'
+            on_release:
+                self.icon = 'eye' if self.icon == 'eye-off' else 'eye-off'
+                conf_senha.password = False if conf_senha.password is True else True
+
+        MDFillRoundFlatButton:
+            text: 'Cadastre-se'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.26}
+            size_hint_x: .4
+            md_bg_color: 0.33, 0.70, 0.33
+
+        MDTextButton:
+            text: '[color=#9B9B9B]Já tem um conta?[/color] [b][color=#00A7FA]Entrar[/color][/b]'
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y': 0.16}
+            on_release:
+                app.root.current = 'entrar'
+                root.manager.transition.direction = 'left'
+
+<Esqueceu_senha>:
+    MDFloatLayout:
+
+        MDIconButton:
+            icon: 'arrow-left'
+            user_font_size: '35sp'
+            pos_hint: {'center_y': .95}
+            theme_text_color: 'Custom'
+            text_color: 0.33, 0.70, 0.33
+            on_release:
+                app.root.current = 'inicio'
+                root.manager.transition.direction = 'right'
+
+        MDLabel:
+            text: '[b][size=25]Esqueceu sua senha?[/size][/b] \n\n [size=15]Não se preocupe! Insira o seu e-mail de cadastro e enviaremos instruções para você.[/size]'
+            markup: True
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+            size_hint_x: .8
+
+        MDTextField:
+            hint_text: 'E-mail'
+            pos_hint: {'center_x': 0.5, 'center_y': .7}
+            size_hint_x: .8
+
+        MDFillRoundFlatButton:
+            text: 'Receber instruções'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            size_hint_x: .4
+            md_bg_color: 0.33, 0.70, 0.33
+
+        MDTextButton:
+            text: '[color=#9B9B9B]Volte para[/color] [b][color=#00A7FA]Entrar[/color][/b]'
+            font_size: 13
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y': 0.54}
+            on_release:
+                app.root.current = 'entrar'
+                root.manager.transition.direction = 'left'
+
+<Navegar>:
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            md_bg_color: 0.33, 0.70, 0.33
+            left_action_items: [['menu', lambda x: nav_drawer.set_state('open')]]
+            right_action_items: [['magnify'], ['bell-outline'], ['heart-outline' ]]
+            elevation: 2
+
+        ScrollView:
+            MDList:
+                padding: 30
+                spacing: 30
+                size_hint_y: None
+
+                MDCard:
+                    size_hint_y: None
+                    height: '150dp'
+                    md_bg_color: [0, 0, 0, 0]
+                    on_release:
+                        app.root.current = 'anuncio'
+                        root.manager.transition.direction = 'left'
+
+                    FitImage:
+                        source: 'Imagens/Gata.jpg'
+
+                    BoxLayout:
+                        size_hint_x: None
+                        width: dp(30)
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        MDLabel:
+                            text: '[b]Gata - 5 anos[/b]'
+                            font_size: '18sp'
+                            markup: True
+                        MDLabel:
+                            text: '[b]Cor:[/b] Bege'
+                            font_size: '14sp'
+                            markup: True
+                            color: 0.54, 0.54, 0.54
+                        MDLabel:
+                            text: '[b]Idade:[/b] 5 anos'
+                            font_size: '14sp'
+                            markup: True
+                            color: 0.54, 0.54, 0.54
+                        MDLabel:
+                            text: '[b]Sexo:[/b] Fêmea'
+                            color: 0.54, 0.54, 0.54
+                            font_size: '14sp'
+                            markup: True
+                        BoxLayout:
+                            size_hint_y: None
+                            height: dp(20)
+                        MDLabel:
+                            text: '19 de junho, Prq. da Fonte'
+                            color: 0.54, 0.54, 0.54
+                            font_size: '11sp'
+    MDNavigationDrawer:
+        id: nav_drawer
+        MDNavigationDrawerMenu:
+            MDNavigationDrawerHeader:
+                title: 'User'
+                padding: '5dp',0,0,'30dp'
+                Foto:
+            MDNavigationDrawerItem:
+                icon: 'lead-pencil'
+                text: 'Anunciar'
+                on_press:
+                    app.root.current = 'anunciar'
+                    root.manager.transition.direction = 'left'
+            MDNavigationDrawerItem:
+                icon: 'account-outline'
+                text: 'Minha conta'
+            MDNavigationDrawerItem:
+                icon: 'heart'
+                text: 'Favoritos'
+            MDNavigationDrawerItem:
+                icon: 'exit-to-app'
+                text: 'Sair'
+                icon_color: 1, 0, 0, 1
+                text_color: 1, 0, 0, 1
+                on_press:
+                    app.root.current = 'inicio'
+                    root.manager.transition.direction = 'right'
+
+<Anunciar>:
+    MDFloatLayout:
+        spacing: dp(30)
+
+        MDIconButton:
+            icon: 'arrow-left'
+            user_font_size: '35sp'
+            pos_hint: {'center_y': .95}
+            theme_text_color: 'Custom'
+            text_color: 0.33, 0.70, 0.33
+            on_release:
+                app.root.current = 'navegar'
+                root.manager.transition.direction = 'right'
+
+        MDLabel:
+            text: 'O que você está anunciando?'
+            font_size: '30sp'
+            size_hint: 0.8, None
+            halign: 'center'
+            pos_hint: {'center_x': .5, 'center_y': .8}
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': .4}
+            size_hint: .8, None
+            size: 0, 289
+            radius: 6
+
+            OneLineIconListItem:
+                on_release:
+                    app.nicone('dog-side')
+                    root.manager.transition.direction = 'left'
+                text: 'Cães'
+                IconLeftWidget:
+                    icon: 'dog-side'
+
+            OneLineIconListItem:
+                on_release:
+                    app.nicone('cat')
+                    root.manager.transition.direction = 'left'
+                text: 'Gatos'
+                IconLeftWidget:
+                    icon: 'cat'
+
+            OneLineIconListItem:
+                on_release:
+                    app.nicone('bird')
+                    root.manager.transition.direction = 'left'
+                text: 'Aves'
+                IconLeftWidget:
+                    icon: 'bird'
+
+            OneLineIconListItem:
+                on_release:
+                    app.nicone('fishbowl-outline')
+                    root.manager.transition.direction = 'left'
+                text: 'Peixes'
+                IconLeftWidget:
+                    icon: 'fishbowl-outline'
+
+            OneLineIconListItem:
+                on_release:
+                    app.nicone('rodent')
+                    root.manager.transition.direction = 'left'
+                text: 'Roedores'
+                IconLeftWidget:
+                    icon: 'rodent'
+
+            OneLineIconListItem:
+                on_release:
+                    app.nicone('snake')
+                    root.manager.transition.direction = 'left'
+                text: 'Serpentes'
+                IconLeftWidget:
+                    icon: 'snake'
+<Anunciando>:
+    MDFloatLayout:
+        spacing: dp(30)
+
+        MDIconButton:
+            icon: 'arrow-left'
+            user_font_size: '35sp'
+            pos_hint: {'center_y': .95}
+            theme_text_color: 'Custom'
+            text_color: 0.33, 0.70, 0.33
+            on_release:
+                app.root.current = 'anunciar'
+                root.manager.transition.direction = 'right'
+
+        MDLabel:
+            text: 'O que você está anunciando?'
+            font_size: '30sp'
+            size_hint: 0.8, None
+            halign: 'center'
+            pos_hint: {'center_x': .5, 'center_y': .8}
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': .4}
+            size_hint: .8, None
+            size: 0, 289
+            radius: 6
+
+            MDIcon:
+                icon: app.icone
+                theme_text_color: 'Custom'
+
+            MDTextField:
+                hint_text: 'Título'
+                mode: 'rectangle'
+
+            MDTextField:
+                hint_text: 'Descrição'
+                mode: 'rectangle'
+                size_hint_y: None
+                height: '200dp'
+
+            MDTextField:
+                hint_text: 'Raça'
+                mode: 'rectangle'
+
+            Widget:
+                size_hint_y: None
+                height: '10dp'
+
+            MDRectangleFlatIconButton:
+                icon: 'camera'
+                text: 'Adicionar Foto'
+                theme_text_color: 'Custom'
+                text_color: 'gray'
+                line_color: 'gray'
+                theme_icon_color: 'Custom'
+                icon_color: 0.33, 0.70, 0.33
+
+            MDTextField:
+                hint_text: 'Localização'
+                mode: 'rectangle'
+
+            MDTextField:
+                hint_text: 'Contato'
+                mode: 'rectangle'
+
+<Anuncio>:
+    MDFloatLayout:
+        MDIconButton:
+            icon: 'arrow-left'
+            user_font_size: '35sp'
+            pos_hint: {'center_y': .95}
+            theme_text_color: 'Custom'
+            text_color: 0.33, 0.70, 0.33
+            on_release:
+                app.root.current = 'navegar'
+                root.manager.transition.direction = 'right'
+
+        MDBoxLayout:
+            size_hint: 1,.9
+            orientation: 'vertical'
+            MDBoxLayout:
+                size_hint: 1,.4
+                pos_hint: {'center_y': .7}
+                spacing: 20
+                padding: 20
+
+                MDIcon:
+                    icon: 'arrow-left-drop-circle-outline'
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+                FitImage:
+                    source: 'Imagens/Gata.jpg'
+
+                MDIcon:
+                    icon: 'arrow-right-drop-circle-outline'
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+            MDBoxLayout:
+                size_hint: 1,.4
+                ScrollView:
+                    MDList:
+                        size_hint_y: None
+                        spacing: '40sp'
+
+                        MDCard:
+                            orientation: 'vertical'
+                            padding: 20,0,0,0
+                            size_hint_y: None
+                            height: '50dp'
+                            md_bg_color: [0, 0, 0, 0]
+
+                            MDLabel:
+                                text: '[b]Gata - 5 anos[/b]'
+                                font_size: '18sp'
+                                markup: True
+                            MDLabel:
+                                text: '19 de junho, Prq. da Fonte'
+                                color: 0.54, 0.54, 0.54
+                                font_size: '11sp'
+
+                        MDCard:
+                            orientation: 'vertical'
+                            padding: 20,0,0,0
+                            size_hint_y: None
+                            md_bg_color: [0, 0, 0, 0]
+                            spacing: '10sp'
+
+                            MDLabel:
+                                text: 'Descrição'
+                                font_size: '14sp'
+
+                            MDLabel:
+                                text: 'Doa-se gata de 5 anos para tutor responsável, valor entrar em contato via WhatsApp (41) 99999-9999'
+                                font_size: '11sp'
+
+                        MDCard:
+                            orientation: 'vertical'
+                            padding: 20,0,0,0
+                            size_hint_y: None
+                            md_bg_color: [0, 0, 0, 0]
+                            spacing: '10sp'
+
+                            MDLabel:
+                                text: 'Detalhes'
+                                font_size: '14sp'
+
+                            GridLayout:
+                                cols: 2
+                                rows: 5
+                                spacing: '30sp'
+
+                                MDLabel:
+                                    text: 'Tipo'
+                                    font_size: '11sp'
+
+                                MDLabel:
+                                    text: 'Gato'
+                                    font_size: '11sp'
+
+                                MDLabel:
+                                    text: 'Raça'
+                                    font_size: '11sp'
+                                MDLabel:
+                                    text: ''
+                                    font_size: '11sp'
+                                MDLabel:
+                                    text: 'Cor'
+                                    font_size: '11sp'
+                                MDLabel:
+                                    text: ''
+                                    font_size: '11sp'
+                                MDLabel:
+                                    text: 'Idade'
+                                    font_size: '11sp'
+                                MDLabel:
+                                    text: '5 Anos'
+                                    font_size: '11sp'
+                                MDLabel:
+                                    text: 'Sexo'
+                                    font_size: '11sp'
+                                MDLabel:
+                                    text: 'Fêmea'
+                                    font_size: '11sp'
+
+#Widget para formatar a miniatura da foto de perfil do usuário.
+<Foto@Widget>:
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+        Ellipse:
+            size: self.size
+            pos: self.pos
+            source: 'Imagens/user.png'
+    size_hint_x: None
+    width: self.height
